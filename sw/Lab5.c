@@ -75,17 +75,20 @@
 
 /* Register definitions. */
 #include "./inc/tm4c123gh6pm.h"
-/* Port F switch and LED control. */
-#include "./inc/LaunchPad.h"
+/* Clocking. */
+#include "./inc/PLL.h"
 /* Clock delay and interrupt control. */
 #include "./inc/CortexM.h"
-/* External debug monitor stuff. */
-#include "./inc/TExaS.h"
-
+/* Initialization of all the pins. */
+#include "./inc/Unified_Port_Init.h"
+/* Talking to PC via UART. */
+#include "./inc/UART.h"
 /* ST7735 display. */
 #include "./inc/ST7735.h"
 /* Add whatever else you need here! */
 #include "./lib/RGB/RGB.h"
+
+/* NOTE: We suggest using the ./inc/ADCSWTrigger.h and the ./inc/TimerXA.h headers. */
 
 
 /** MMAP Pin definitions. */
@@ -98,22 +101,77 @@
 int main(void) {
     DisableInterrupts();
 
-    /* TExaS Debug modes:
-       SCOPE,           // PD3
-       LOGICANALYZER,   // ???
-       SCOPE_PD2,       // PD2
-       SCOPE_PE2,       // PE3
-       SCOPE_PB5        // PB5
-     */
-    TExaS_Init(SCOPE);
-    LaunchPad_Init();
+    /* Interrupts currently being used:
+       Timer0A, pri7 - RGB flashing
+       UART0, pri7 - PC communication
+    */
     
-    // WARNING! BRIGHT FLASHING COLORS. DO NOT RUN IF YOU HAVE EPILEPSY.
-    // RGBInit();
+    /* PLL Init. */
+    PLL_Init(Bus80MHz);
 
+    /* Allow us to talk to the PC via PuTTy! Check device manager to see which
+       COM serial port we are on. The baud rate is 115200 chars/s. */
+    UART_Init(7);
+
+    /* Start up display. */
+    ST7735_InitR(INITR_REDTAB);
+
+    /* Initialize all ports. */
+    Unified_Port_Init();
+
+    /* Start RGB flashing. WARNING! BRIGHT FLASHING COLORS. DO NOT RUN IF YOU HAVE EPILEPSY. */
+    RGBInit();
+
+    /* Allows any enabled timers to begin running. */
     EnableInterrupts();
-    while(1) {
+
+    /* Print starting message to the PC and the ST7735. */
+    ST7735_FillScreen(ST7735_BLACK);
+    ST7735_SetCursor(0, 0);
+    ST7735_OutString(
+        "ECE445L Lab 5.\n"
+        "Press SW1 to start.\n");
+    UART_OutString(
+        "ECE445L Lab 5.\r\n"
+        "Press SW1 to start.\r\n");
+    Pause();
+
+    /* Stop RGB and turn off any on LEDs. */
+    RGBStop();
+    PF1 = 0;
+    PF2 = 0;
+    PF3 = 0;
+
+    /* Reset screen. */
+    ST7735_FillScreen(ST7735_BLACK);
+    ST7735_SetCursor(0, 0);
+    ST7735_OutString("Starting...\n");
+    UART_OutString("Starting...\r\n");
+
+    while (1) {
+        /* TODO: Write your code here! */
         WaitForInterrupt();
     }
     return 1;
+}
+
+/** Function Implementations. */
+void DelayWait10ms(uint32_t n) {
+    uint32_t volatile time;
+    while (n){
+        time = 727240 * 2 / 91;  // 10msec
+        while (time){
+            --time;
+        }
+        --n;
+    }
+}
+
+void Pause(void) {
+    while (PF4 == 0x00) {
+        DelayWait10ms(10);
+    }
+    while (PF4 == 0x10) {
+        DelayWait10ms(10);
+    }
 }
