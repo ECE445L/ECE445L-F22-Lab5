@@ -15,8 +15,8 @@
 // ---------------------------------------------------------------------------
 
 
-#include "inc/tm4c123gh6pm.h"
-#include "inc/Unified_Port_Init.h"
+#include "tm4c123gh6pm.h"
+#include "Unified_Port_Init.h"
 
 // ---------------------------    Port_Init     ------------------------------
 
@@ -192,7 +192,7 @@ void Port_C_Init(void){
   GPIO_PORTC_AFSEL_R    &= ~0xF0;         // regular port function
   GPIO_PORTC_PUR_R       =  0xF0;         // enable pull-up on PC7-PC4
   GPIO_PORTC_DEN_R      |=  0xF0;         // enable digital port 
-  }  
+  }
   
 // ----------------------------------------------------------------------------
 // ----------------    PORT D Initialization   --------------------------------

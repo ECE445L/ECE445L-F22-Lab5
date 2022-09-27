@@ -2,8 +2,8 @@
  * @file TLV5616.h
  * @author your name (you@domain.com)
  * @brief Low level driver for the TLV5616 12-bit SPI DAC.
- * @version 0.1
- * @date 2022-02-11
+ * @version 0.2.0
+ * @date 2022-09-26
  * 
  * @copyright Copyright (c) 2022
  * @note Reference datasheet: 
@@ -28,20 +28,20 @@
 
 
 /**
- * @brief TLV5616_Init initializes SPI at pins <TODO: STATE PINS HERE> to
+ * @brief tlv5616_init initializes SPI at pins <TODO: STATE PINS HERE> to
  *        communicate with the TLV5616 12-bit SPI DAC.
  * 
  * @return int 0 if initialization was successful or a positive integer if an
  *         error occurred. <TODO: LIST ERROR CODES AND POSSIBLE ERROR EVENTS>
  */
-int TLV5616_Init();
+int tlv5616_init();
 
 /**
- * @brief TLV5616_Output tells the TLV5616 to output a specified voltage.
+ * @brief tlv5616_output tells the TLV5616 to output a specified voltage.
  * 
  * @param data 12-bit data value representing the voltage that should be output
  *        to the TLV4616.
  * @return int 0 if initialization was successful or a positive integer if an
  *         error occurred. <TODO: LIST ERROR CODES AND POSSIBLE ERROR EVENTS>
  */
-int TLV5616_Output(uint16_t data);
+int tlv5616_output(uint16_t data);
