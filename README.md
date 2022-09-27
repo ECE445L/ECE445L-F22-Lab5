@@ -304,7 +304,7 @@ Give short 1 or 2 sentence answers to these questions.
 2. Calculate the data available and data required intervals in the SSI/DAC interface. Use these calculations to justify your choice of SSI frequency.
 3. Why did you use Freescale mode 1 and not mode 0 (bits 7,6 of `SSI1_CR0_R`)?
 4. How is the frequency range of a spectrum analyzer determined?
-5. Notice the audio amplifier had a voltage gain of 1. Why did we not simply drive the speaker directly from the DAC? I.e., what purpose is the TPA731/MC34119?
+5. Notice the audio amplifier had a voltage gain of 1. Why did we not simply drive the speaker directly from the DAC? In other words, what purpose is the TPA731/MC34119?
 
 ---
 
