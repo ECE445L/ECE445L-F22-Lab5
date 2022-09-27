@@ -98,6 +98,9 @@
 #define PF3   (*((volatile uint32_t *)0x40025020)) // GREEN LED
 #define PF4   (*((volatile uint32_t *)0x40025040)) // Right Button
 
+void Pause(void);
+void DelayWait10ms(uint32_t n);
+
 int main(void) {
     DisableInterrupts();
 
