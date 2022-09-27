@@ -49,7 +49,7 @@ for the lab. The `sw/inc` folder contains firmware drivers written for you by
 Professor Valvano. Feel free to write your own (in fact, in some labs, you may
 be required to write your own).
 
-You can place any other source files in the `sw/` folder. TAs will look at the
+You can place any other source files in the `sw` folder. TAs will look at the
 files you create and/or modify for software quality and for running your
 project.
 
