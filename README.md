@@ -263,7 +263,7 @@ Write and debug the music system. Cut up a box, placing the speaker inside, and 
 
 ![Figure 5.11](resources/images/figure_5.11.png)
 
- *Figure 5.11. Two channel recording of pins 5 and 8. DC component is 2.4V (about ½ of +5V power), Vp-p is 1.6V (amplitude of the sound) and frequency is 523 Hz.*
+ *Figure 5.11. Two channel recording of pins 5 and 8. DC component is 2.14V, peak to peak is 1.16V (amplitude of the sound), and the frequency is 440.135 Hz.*
 
  Remove the USB cable and carefully power your system using a lab power supply connected to the +5V line. Set the voltage to +5V, and measure the required current to run the system with and without playing music, in addition measure the RMS voltage on the +5V line, which is a measure of power line noise. Take a measurement with and without the music playing. Double check the positive and negative connections before turning it on. If you are at all unsure about this measurement ask your TA for help.
 
