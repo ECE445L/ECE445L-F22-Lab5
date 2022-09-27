@@ -9,11 +9,11 @@
   - [1 Summary](#1-summary)
     - [1.1 Goals](#11-goals)
     - [1.2 Team Size](#12-team-size)
-    - [1.2 Review](#12-review)
-    - [1.3 Starter Files](#13-starter-files)
+    - [1.3 Review](#13-review)
+    - [1.4 Starter Files](#14-starter-files)
     - [1.5 Required Hardware](#15-required-hardware)
-    - [1.5 Background](#15-background)
-    - [1.6 Requirements Document](#16-requirements-document)
+    - [1.6 Background](#16-background)
+    - [1.7 Requirements Document](#17-requirements-document)
   - [2 Preparation](#2-preparation)
   - [3 Procedure](#3-procedure)
     - [3.1 Deliverable 1](#31-deliverable-1)
@@ -26,7 +26,7 @@
   - [5 Report](#5-report)
     - [5.1 Deliverables](#51-deliverables)
     - [5.2 Analysis and Discussion Questions](#52-analysis-and-discussion-questions)
-    - [6 Extra Credit](#6-extra-credit)
+  - [6 Extra Credit](#6-extra-credit)
 
 ---
 
@@ -100,14 +100,14 @@ The team size for this lab is 2.
 > be two. Three shalt thou not count, neither count thou one, excepting that
 > thou then proceed to two. Four is right out.
 
-### 1.2 Review
+### 1.3 Review
 
 1. Search [http://www.ti.com](http://www.ti.com) for a data sheet on the TLV5618CP 12-bit DAC
 2. Valvano Section 6.2 on periodic interrupts using the timer
 3. Valvano Section 7.5 on SSI interfacing
 4. Valvano Section 8.4 on DAC parameters and waveform generation
 
-### 1.3 Starter Files
+### 1.4 Starter Files
 
 - `lab_5.c`
 - `TLV5616.c`
@@ -126,7 +126,7 @@ The team size for this lab is 2.
 | TPA731D audio amp         | [TPA731 datasheet](resources/part_datasheets/tpa731.pdf)      | $1.85     |
 | MC34119 (discontinued)    | [MC34119 datasheet](resources/part_datasheets/mc34119.pdf)    | N/A       |
 
-### 1.5 Background
+### 1.6 Background
 
 Most digital music devices rely on high-speed digital to analog converters (DACs) to create the analog waveforms required to produce high-quality sound. You will interface a 12-bit DAC and use it to create a sine-wave output. In particular, you will interface a TI TLV5616 12-bit DAC to an SSI port. **Please refer to the DAC data sheets for the SPI synchronous serial protocol**. During testing, the output of the DAC will be connected to a voltmeter, an oscilloscope, or a spectrum analyzer. You are allowed to use any DAC chip you want, as long as it runs on a single +3.3V supply and has an SSI interface. Many DACs, such as the TLV5616, require a reference voltage. A stable 1.50V reference can be created using a reference chip such as the LM4041C. The LM4041CILPR is an adjustable shunt reference that can be powered from the +3.3V supply and requires three external resistors to create the 1.50V reference. Look up in the TLV5616 data sheet to find how much current the DAC needs on its REF input. In the data sheet you will find the input impedance R<sub>in</sub> of the REF pin, you can calculate this load current IL = 1.5V / R<sub>in</sub>. Next, look up page 8 of the LM4041CILPR data sheet to find IZ (80 µA) and V<sub>REF</sub> (1.233V). Current through R1+R2 will be I<sub>REF</sub> =V<sub>REF</sub>/(R1+R2). Select R1 and R2 to set the reference output.
 
@@ -199,7 +199,7 @@ A chord is created by playing multiple notes simultaneously. When two piano keys
 
 *Figure 5.8. A simple chord mixing the notes C and G.*
 
-### 1.6 Requirements Document
+### 1.7 Requirements Document
 
 Edit the document.
 
@@ -308,7 +308,7 @@ Give short 1 or 2 sentence answers to these questions.
 
 ---
 
-### 6 Extra Credit
+## 6 Extra Credit
 
 You may (for a +5% bonus) create multiple sine-waves at the same time. This way, you can play music containing melody and harmony. For this bonus you will use two sine-wave generators and add them together in hardware or software; be careful not to overflow and cause clipping. You will need three interrupts: one for outputting the sine-wave for the melody, one for outputting the sine-wave for the harmony, and a third to interpret the music (updating the frequencies and envelopes for the other two.) You will have to add the two sine-waves together in software.
 
