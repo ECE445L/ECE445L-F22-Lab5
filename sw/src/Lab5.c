@@ -7,21 +7,21 @@
  *    Feel free to edit this to match your specifications.
  *
  *    For this lab, the team must implement an audio player. The audio player
- *    must interface with (at minimum) two switches and the TLV5616 SPI DAC. The
+ *    must interface with (at minimum) two switches and the TLV5618 SPI DAC. The
  *    audio player must be able to play, pause, and rewind music, and should
  *    have extra functionality defined by the user in the requirements document.
  *    The LCD and other hardware may be used.
  * 
- *    Starter code includes the function definitions for the TLV5616 SPI
+ *    Starter code includes the function definitions for the TLV5618 SPI
  *    DAC. The team must implement this driver and the driver must be written at
  *    a low level without calling TivaWare or ValvanoWare driver code. See
- *    lib/TLV5616.h for more details.
+ *    inc/DAC.h for more details.
  * 
  *    The TA (Matthew) suggests the students consider the data structure design
  *    and abstractions required to play songs. What is a song? What is a note?
  *    What is a rest? How can one play chords? How can one queue songs?
  * 
- *    Other than the TLV5616 driver, this assignment is open ended, so teams
+ *    Other than the TLV5618 driver, this assignment is open ended, so teams
  *    must architect features of this audio player beyond the base requirements
  *    and design the relevant drivers. Feel free to use drivers made from
  *    previous labs (or build off of Lab 3 and 4). 
@@ -44,9 +44,7 @@
  *    VCC (pin 2) connected to +3.3 V
  *    Gnd (pin 1) connected to ground
  * 
- *    Center of 10k-ohm potentiometer connected to PE2/AIN1
- *    Bottom of 10k-ohm potentiometer connected to ground
- *    Top of 10k-ohm potentiometer connected to +3.3V 
+ *    
  *
  *    Warning. Initial code for the RGB driver creates bright flashing lights. Remove this code
  *    and do not run if you have epilepsy.
@@ -89,7 +87,7 @@
 #include "./lib/RGB/RGB.h"
 
 /* NOTE: We suggest using the ./inc/ADCSWTrigger.h and the ./inc/TimerXA.h headers. */
-
+#include "./inc/DAC.h"
 
 /** MMAP Pin definitions. */
 #define PF0   (*((volatile uint32_t *)0x40025004)) // Left Button
