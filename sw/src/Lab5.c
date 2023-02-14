@@ -88,6 +88,7 @@
 
 /* NOTE: We suggest using the ./inc/ADCSWTrigger.h and the ./inc/TimerXA.h headers. */
 #include "./inc/DAC.h"
+#include "./inc/Dump.h"
 
 /** MMAP Pin definitions. */
 #define PF0   (*((volatile uint32_t *)0x40025004)) // Left Button
@@ -112,7 +113,7 @@ int main(void) {
 
     /* Allow us to talk to the PC via PuTTy! Check device manager to see which
        COM serial port we are on. The baud rate is 115200 chars/s. */
-    UART_Init(7);
+    UART_Init();
 
     /* Start up display. */
     ST7735_InitR(INITR_REDTAB);
